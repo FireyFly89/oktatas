@@ -1,31 +1,36 @@
 <?php
 session_start();
-CONST ROOT_DIR = "/var/www/secondproject/";
+const ROOT_DIR = "/var/www/secondproject/";
 
-function getTemplate(string $path = '') {
+function getTemplate(string $path = '')
+{
     ob_start();
     include("templates/$path.php");
     echo ob_get_clean();
 }
 
 // Dump Die
-function dd(mixed $data) {
+function dd(mixed $data)
+{
     echo "<pre>";
     var_dump($data);
     echo "</pre>";
-    //die();
+    die();
 }
 
-function redirect(string $url = "/") {
+function redirect(string $url = "/")
+{
     header("Location: $url");
     die();
 }
 
-function addError(int|string $key, mixed $value) {
+function addError(int|string $key, mixed $value): void
+{
     $_SESSION['errors'][$key] = $value;
 }
 
-function getError(int|string $key) {
+function getError(int|string $key)
+{
     if (empty($_SESSION) || !array_key_exists($key, $_SESSION['errors'])) {
         return false;
     }
@@ -33,16 +38,19 @@ function getError(int|string $key) {
     return $_SESSION['errors'][$key];
 }
 
-function cleanErrors() {
+function cleanErrors()
+{
     $_SESSION = [];
 }
 
-function validateUserData(array $data): bool {
+function validateUserData(array $data): bool
+{
     if (empty($data)) {
         addError('form', "Form was empty");
         return false;
     }
 
+    cleanErrors();
     $success = true;
 
     if (empty($data['username'])) {
@@ -60,11 +68,11 @@ function validateUserData(array $data): bool {
         $success = false;
     }
 
-    cleanErrors();
     return $success;
 }
 
-function processUserData(array $data) {
+function processUserData(array $data)
+{
     if (!empty($data) && validateUserData($data)) {
         file_put_contents(getFilePath('userData', 'json'), json_encode($data));
         redirect();
@@ -73,7 +81,8 @@ function processUserData(array $data) {
 
 echo processUserData($_POST);
 
-function getFilePath(string $path, string $extension, string $type = '') {
+function getFilePath(string $path, string $extension, string $type = '')
+{
     if (!empty($type)) {
         $allowedTypes = [
             'template' => 'templates/',
@@ -92,11 +101,13 @@ function getFilePath(string $path, string $extension, string $type = '') {
     return ROOT_DIR . "$path.$extension";
 }
 
-function getRandomHash(string $fileName): string {
+function getRandomHash(string $fileName): string
+{
     return substr(md5($fileName . rand(1, 9999999) . time()), 0, 10);
 }
 
-function saveFile() {
+function saveFile()
+{
     if (empty($_FILES) || !array_key_exists('tmp_name', $_FILES['file'])) {
         return;
     }
@@ -116,13 +127,16 @@ function saveFile() {
     move_uploaded_file($_FILES['file']['tmp_name'], getFilePath(getRandomHash($fileData['name']), $extension, 'image'));
     redirect();
 }
+
 saveFile();
 
-function isFileExists() {
+function isFileExists()
+{
     // ha létezik a file
 }
 
-function generateUniqueFileName() {
+function generateUniqueFileName()
+{
     $fileName = getRandomHash();
 
     if (!isFileExists($fileName)) {
