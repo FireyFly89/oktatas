@@ -1,6 +1,6 @@
 <?php
 session_start();
-const ROOT_DIR = "/var/www/secondproject/";
+const ROOT_DIR = "/var/www/secondproject/oktatas_2/";
 
 function getTemplate(string $path = '')
 {
