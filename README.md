@@ -1,6 +1,6 @@
 **HÁZIFELADATOK:**
 
-2. Alkalom (2024/02/24):
+2. Alkalom (**2024/02/24**):
 Bővítsük ki a felhasználó feltöltését a következő mezőkkel:
 
 * telefonszám (külön országhívó kód, külön szám) (text típusú mezők)
@@ -17,5 +17,5 @@ Bővítsük ki a felhasználó feltöltését a következő mezőkkel:
 
 * Ha nem sikerül minden, nem gond, következő óra elején azt is megnézzük.
 
-3. Alkalom (2024/03/02):
-...
+3. Alkalom (**2024/03/02**):
+Nemsokára...
