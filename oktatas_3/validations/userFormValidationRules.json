@@ -1,0 +1,57 @@
+{
+    "username": [
+      {
+        "rules": "required",
+        "message": "Username is required"
+      },
+      {
+        "rules": {
+          "min": 2,
+          "max": 20
+        },
+        "message": "Username has to be at least 2 characters but maximum 20 characters"
+      }
+    ],
+    "password": [
+      {
+        "rules": "required",
+        "message": "Password is required"
+      }
+    ],
+    "phone": [
+      {
+        "rules": "required",
+        "message": "Phone is required"
+      }
+    ],
+    "phone_country": [
+      {
+        "rules": "required",
+        "message": "Phone is required"
+      }
+    ],
+    "country": [
+      {
+        "rules": "required",
+        "message": "Country is required"
+      }
+    ],
+    "city": [
+      {
+        "rules": "required",
+        "message": "City is required"
+      }
+    ],
+    "house": [
+      {
+        "rules": "required",
+        "message": "House is required"
+      }
+    ],
+    "street": [
+      {
+        "rules": "required",
+        "message": "Street is required"
+      }
+    ]
+  }

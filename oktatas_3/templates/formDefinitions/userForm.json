@@ -1,0 +1,83 @@
+{
+    "username": [{
+        "type": "text",
+        "label": "Felhasználónév",
+        "name": "username",
+        "rules": [
+            {
+                "rule": "required",
+                "message": "Username is required"
+            },
+            {
+                "rule": {
+                    "min": 2,
+                    "max": 20
+                },
+                "message": "Username has to be at least 2 characters but maximum 20 characters"
+            }
+        ]
+    }],
+    "password": [{
+        "type": "text",
+        "label": "Jelszó",
+        "name": "password",
+        "rules": [{
+            "rule": "required",
+            "message": "Password is required"
+        }]
+    }],
+    "phone_country": [{
+        "type": "text",
+        "label": "Telefonszám",
+        "name": "phone_country",
+        "error": false,
+        "rules": [{
+            "rule": "required",
+            "message": "Phone is required"
+        }]
+    }],
+    "phone": [{
+        "type": "text",
+        "name": "phone",
+        "rules": [{
+            "rule": "required",
+            "message": "Phone is required"
+        }]
+    }],
+    "country": [{
+        "type": "text",
+        "label": "Ország",
+        "name": "country",
+        "rules": [{
+            "rule": "required",
+            "message": "Country is required"
+        }]
+    }],
+    "city": [{
+        "type": "text",
+        "label": "Város",
+        "name": "city",
+        "rules": [{
+            "rule": "required",
+            "message": "City is required"
+        }]
+    }],
+    "street": [{
+        "type": "text",
+        "label": "Utca",
+        "name": "street",
+        "rules": [{
+            "rule": "required",
+            "message": "Street is required"
+        }]
+    }],
+    "house": [{
+        "type": "text",
+        "label": "Házszám",
+        "name": "house",
+        "rules": [{
+            "rule": "required",
+            "message": "House is required"
+        }]
+    }]
+  }
