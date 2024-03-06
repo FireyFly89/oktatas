@@ -19,4 +19,5 @@ Bővítsük ki a felhasználó feltöltését a következő mezőkkel:
 
 
 3. Alkalom (**2024/03/02**):
-Nemsokára...
+4. 
+Egészítsétek ki a jelenlegi validációs szabályokat kb ugyanúgy, mint ahogy a felhasználónévnél a minimum és maximum szabályt megcsináltuk, csak most a jelszónak, és a telefonszám mezőnek fejlesszünk oda 1 kis validációt (extrának az emailhez is lehet). Van akinek ez már részlegesen meg volt, az picit előrébb jár, de próbáljunk jelszót határok közé szorítani, minimum és maximum karakterszám, tartalmazzon legalább egy nagybetűt, egy számot, és egy szimbólumot, a telefonszám validációját pedig próbáljuk ez alapján értelmezni: https://en.wikipedia.org/wiki/Telephone_numbers_in_Hungary Ezzel is kicsit "élesben" kipróbálva, hogy ki hogy értelmezni, mire van szükség. Egy munkahelyen ugyanennyit kapnátok, vagy kevesebbet. Felhívom a figyelmetek, hogy itt csak magánszám, vagy vonalas szám formátumot kell tudni ellenőrizni.
