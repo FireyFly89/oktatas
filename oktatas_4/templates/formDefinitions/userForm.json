@@ -1,0 +1,127 @@
+{
+    "username": [
+        {
+            "type": "text",
+            "label": "Felhasználónév",
+            "name": "username",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Username is required"
+                },
+                {
+                    "type": "length",
+                    "rule": {
+                        "min": 2,
+                        "max": 4
+                    },
+                    "message": "Username has to be at least 2 characters but maximum 20 characters"
+                }
+            ]
+        }
+    ],
+    "email": [
+        {
+            "type": "email",
+            "label": "Email",
+            "name": "email",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Email is required"
+                }
+            ]
+        }
+    ],
+    "password": [
+        {
+            "type": "text",
+            "label": "Jelszó",
+            "name": "password",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Password is required"
+                }
+            ]
+        }
+    ],
+    "phone_country": [
+        {
+            "type": "text",
+            "label": "Telefonszám",
+            "name": "phoneCountry",
+            "error": false,
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Phone is required"
+                }
+            ]
+        }
+    ],
+    "phone": [
+        {
+            "type": "text",
+            "name": "phone",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Phone is required"
+                }
+            ]
+        }
+    ],
+    "country": [
+        {
+            "type": "text",
+            "label": "Ország",
+            "name": "country",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Country is required"
+                }
+            ]
+        }
+    ],
+    "city": [
+        {
+            "type": "text",
+            "label": "Város",
+            "name": "city",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "City is required"
+                }
+            ]
+        }
+    ],
+    "street": [
+        {
+            "type": "text",
+            "label": "Utca",
+            "name": "street",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Street is required"
+                }
+            ]
+        }
+    ],
+    "house": [
+        {
+            "type": "text",
+            "label": "Házszám",
+            "name": "house",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "House is required"
+                }
+            ]
+        }
+    ]
+}

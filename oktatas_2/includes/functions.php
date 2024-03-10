@@ -101,7 +101,7 @@ function getFilePath(string $path, string $extension, string $type = '')
     return ROOT_DIR . "$path.$extension";
 }
 
-function getRandomHash(string $fileName): string
+function getRandomHash(string $fileName = 'randomstring'): string
 {
     return substr(md5($fileName . rand(1, 9999999) . time()), 0, 10);
 }
