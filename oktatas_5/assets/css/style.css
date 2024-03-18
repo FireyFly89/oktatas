@@ -1,0 +1,11 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+.form-errors {
+    color: red;
+    font-weight: bold;
+    font-size: 14px;
+}
