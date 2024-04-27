@@ -1,0 +1,12 @@
++----+---------+---------+------------------+------------------------------+------+
+| id | user_id | country | city             | street                       | zip  |
++----+---------+---------+------------------+------------------------------+------+
+|  2 |      43 | Hungary | Miskolc          | Dózsa György út 18.          | 3501 |
+|  3 |      45 | Hungary | Pilisvörösvár    | Síp utca 2.                  | 2085 |
+|  4 |      46 | Hungary | Encsencs         | Budaörsi út 43.              | 4374 |
+|  5 |      56 | Hungary | Csajág           | Teréz krt. 78.               | 8163 |
+|  6 |      57 | Hungary | Alcsútdoboz      | Teréz krt. 52.               | 8087 |
+|  7 |      58 | Hungary | Dunaszentpál     | Bécsi utca 97.               | 9175 |
+|  8 |      63 | Hungary | Atkár            | Apáczai Csere János u. 93.   | 3213 |
+|  9 |      66 | Hungary | Alsópáhok        | Izabella u. 97.              | 8394 |
++----+---------+---------+------------------+------------------------------+------+
