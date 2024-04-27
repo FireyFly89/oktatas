@@ -1,34 +1,44 @@
 <?php
-function generateMaze($width, $height)
-{
-    // Maze array filled with walls
+function generateMaze($width, $height) {
+    // Initialize a maze with all cells set as walls (true indicates a wall)
     $maze = array_fill(0, $height, array_fill(0, $width, true));
 
-    // Start at a random odd coordinate to ensure it's inside the grid
-    $stack = [[1, 1]];
+    // Ensure the entry (1, 0) and exit (height-2, width-1) are open
+    $maze[1][0] = false; // Open the entry point
+    $maze[$height - 2][$width - 1] = false; // Open the exit point
 
+    // Stack for storing the maze path coordinates
+    $stack = [[1, 1]]; // Start generating from coordinate (1, 1)
+
+    // Loop through the stack while there are cells to be processed
     while (count($stack) > 0) {
-        list($x, $y) = array_pop($stack);
-        $maze[$y][$x] = false;
+        list($x, $y) = array_pop($stack); // Pop a cell from the stack
+        $maze[$y][$x] = false; // Carve a passage at the current cell
 
+        // Prepare to check all possible neighboring cells
         $neighbors = [];
+        // Check the left neighbor
         if ($x > 1 && $maze[$y][$x - 2]) $neighbors[] = [$x - 2, $y, $x - 1, $y];
+        // Check the right neighbor
         if ($x < $width - 2 && $maze[$y][$x + 2]) $neighbors[] = [$x + 2, $y, $x + 1, $y];
+        // Check the top neighbor
         if ($y > 1 && $maze[$y - 2][$x]) $neighbors[] = [$x, $y - 2, $x, $y - 1];
+        // Check the bottom neighbor
         if ($y < $height - 2 && $maze[$y + 2][$x]) $neighbors[] = [$x, $y + 2, $x, $y + 1];
 
+        // If there are unvisited neighbors, choose one randomly
         if (count($neighbors) > 0) {
-            $stack[] = [$x, $y];
-            $chosen = $neighbors[rand(0, count($neighbors) - 1)];
-            $maze[$chosen[3]][$chosen[2]] = false;
-            $stack[] = [$chosen[0], $chosen[1]];
+            $stack[] = [$x, $y]; // Push the current cell back on the stack
+            $chosen = $neighbors[rand(0, count($neighbors) - 1)]; // Choose a random neighbor
+            $maze[$chosen[3]][$chosen[2]] = false; // Remove the wall between the current cell and the chosen neighbor
+            $stack[] = [$chosen[0], $chosen[1]]; // Push the chosen neighbor on the stack to continue the path
         }
     }
 
-    return $maze;
+    return $maze; // Return the generated maze
 }
 
-// Generate a small 15x15 maze
+// Generate a 15x15 maze
 $maze = generateMaze(31, 31);
 ?>
 
