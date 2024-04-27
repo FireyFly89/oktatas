@@ -19,7 +19,6 @@ class FormController
             $formMap = json_decode(getAsset('userForm', 'json', 'definitions'), true);
             //$this->validate($data, $formMap);
             $validationError = new ValidationError($formMap, $data);
-            dd($validationError->validationErrors);
 
             if ($this->isValidated()) {
                 $user = new User($data);

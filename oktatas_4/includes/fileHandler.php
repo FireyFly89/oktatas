@@ -11,14 +11,14 @@ function getFilePath(string $path, string $extension, string $type = '')
 {
     if (!empty($type)) {
         $allowedTypes = [
-            'template' => 'templates/',
-            'includes' => 'includes/',
-            'assets' => 'assets/',
-            'image' => 'assets/img/',
-            'js' => 'assets/js/',
-            'css' => 'assets/css/',
-            'validations' => 'validations/',
-            'definitions' => 'templates/formDefinitions/',
+            'template' => '/templates/',
+            'includes' => '/includes/',
+            'assets' => '/assets/',
+            'image' => '/assets/img/',
+            'js' => '/assets/js/',
+            'css' => '/assets/css/',
+            'validations' => '/validations/',
+            'definitions' => '/templates/formDefinitions/',
         ];
 
         if (array_key_exists($type, $allowedTypes)) {

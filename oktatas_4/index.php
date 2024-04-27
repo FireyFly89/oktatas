@@ -1,4 +1,6 @@
-<?php require_once('includes/functions.php'); ?>
+<?php
+CONST ROOT_DIR = __DIR__;
+require_once('includes/functions.php'); ?>
 <!DOCTYPE html>
 <html lang="hu">
     <?php

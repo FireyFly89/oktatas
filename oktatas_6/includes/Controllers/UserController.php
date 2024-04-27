@@ -15,7 +15,7 @@ class UserController
             $validationError = new ValidationError($formMap, $data);
             $sessionManager = new ErrorSessionManager();
             $sessionManager->addErrors($validationError->validationErrors);
-
+            dd($_SESSION);
             if ($sessionManager->isValidated()) {
                 $user = new User();
                 $user->create($data);

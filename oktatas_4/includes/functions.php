@@ -1,6 +1,5 @@
 <?php
 session_start();
-const ROOT_DIR = "/var/www/secondproject/oktatas_3/";
 require_once "includes/utilities.php";
 require_once "includes/fileHandler.php";
 require_once "includes/Models/User.php";
