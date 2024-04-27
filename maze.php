@@ -17,14 +17,26 @@ function generateMaze($width, $height) {
 
         // Prepare to check all possible neighboring cells
         $neighbors = [];
+        
         // Check the left neighbor
-        if ($x > 1 && $maze[$y][$x - 2]) $neighbors[] = [$x - 2, $y, $x - 1, $y];
+        if ($x > 1 && $maze[$y][$x - 2]) {
+            $neighbors[] = [$x - 2, $y, $x - 1, $y];
+        }
+
         // Check the right neighbor
-        if ($x < $width - 2 && $maze[$y][$x + 2]) $neighbors[] = [$x + 2, $y, $x + 1, $y];
+        if ($x < $width - 2 && $maze[$y][$x + 2]) {
+            $neighbors[] = [$x + 2, $y, $x + 1, $y];
+        }
+
         // Check the top neighbor
-        if ($y > 1 && $maze[$y - 2][$x]) $neighbors[] = [$x, $y - 2, $x, $y - 1];
+        if ($y > 1 && $maze[$y - 2][$x]) {
+            $neighbors[] = [$x, $y - 2, $x, $y - 1];
+        }
+
         // Check the bottom neighbor
-        if ($y < $height - 2 && $maze[$y + 2][$x]) $neighbors[] = [$x, $y + 2, $x, $y + 1];
+        if ($y < $height - 2 && $maze[$y + 2][$x]) {
+            $neighbors[] = [$x, $y + 2, $x, $y + 1];
+        }
 
         // If there are unvisited neighbors, choose one randomly
         if (count($neighbors) > 0) {
