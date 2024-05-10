@@ -1,0 +1,32 @@
+{
+    "email": [
+        {
+            "type": "email",
+            "label": "Email",
+            "name": "email",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Email is required"
+                },
+                {
+                    "type": "match",
+                    "pattern": "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$/"
+                }
+            ]
+        }
+    ],
+    "password": [
+        {
+            "type": "password",
+            "label": "Jelszó",
+            "name": "password",
+            "rules": [
+                {
+                    "type": "required",
+                    "message": "Password is required"
+                }
+            ]
+        }
+    ]
+}

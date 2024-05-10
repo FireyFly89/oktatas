@@ -5,6 +5,7 @@ class DatabaseManager
 
     public static $connection;
     public static string $tableName;
+    public static bool $protectData = true;
     protected static array $preparedData;
 
     public function __construct(
@@ -72,7 +73,7 @@ class DatabaseManager
 
         $className = self::convertStringToClassName($tableName);
 
-        if (class_exists($className)) {
+        if (self::$protectData === true && class_exists($className)) {
             $model = new $className;
             $hiddenFields = $model->getHiddenFields();
 
@@ -87,6 +88,13 @@ class DatabaseManager
 
         return $result;
         //return $this->connection->query()->fetch();
+    }
+
+    public static function getUnprotected(array|string $columns = "*", string $where = '', string $tableName = "") {
+        self::$protectData = false;
+        $result = self::read($columns, $where, $tableName);
+        self::$protectData = true;
+        return $result;
     }
 
     /*
