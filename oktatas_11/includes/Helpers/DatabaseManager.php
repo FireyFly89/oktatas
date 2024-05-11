@@ -22,17 +22,23 @@ class DatabaseManager
     /*
     SQL Példa: INSERT INTO users (username, email, password) VALUES ("felhasználónév", "email cím", "jelszó");
     */
-    public static function create(array $data = [])
+    public static function create(array $data = [], string $tableName = "")
     {
         $data = UnderscoreColumns::convertKeysToUnderscore($data);
+
+        if (empty($tableName)) {
+            $tableName = self::$tableName;
+        }
+
         $sql = sprintf(
             'INSERT INTO %s (%s) VALUES (:%s)',
-            self::$tableName,
+            $tableName,
             UnderscoreColumns::getColumnNames($data),
             UnderscoreColumns::getColumnNames($data, ',:')
         );
-        $statement = self::$connection->prepare($sql);
         
+        $statement = self::$connection->prepare($sql);
+    
         try {
             return $statement->execute($data);
         } catch (PDOException $exception) {

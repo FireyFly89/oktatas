@@ -7,12 +7,20 @@
                     password: $('input[name="password"]').val(),
                     action: 'login'
                 }).done(function(response) {
-                    console.log(response);
+                    const responseData = JSON.parse(response);
+
+                    if (responseData.success === true) {
+                        window.location.replace('/');
+                    }
                 });
             } else {
+                const urlParams = new URLSearchParams(window.location.search);
+   
                 $.post("http://oktatas.local", {
                     message: $('textarea').val(),
-                    action: 'new-message'
+                    action: 'new-message',
+                    user_to: urlParams.get('sender_id')
+
                 }).done(function(response) {
                     console.log(response);
                 });
@@ -20,14 +28,16 @@
         });
 
         setInterval(function() {
-            $.get("http://oktatas.local/messages/1", {
-                message: $('textarea').val()
-            }).done(function(response) {
-                if (response) {
-                    const $messages = $(response);
-                    $('.messages-wrapper').html($messages.html());
-                }
-            });
+            if (user && user.id) {
+                $.get("http://oktatas.local/messages/" + user.id, {
+                    message: $('textarea').val()
+                }).done(function(response) {
+                    if (response) {
+                        const $messages = $(response);
+                        $('.messages-wrapper').html($messages.html());
+                    }
+                });
+            }
         }, 1000);
-    })
+    });
 })(jQuery);

@@ -7,7 +7,8 @@
 
         if ($message['sender_id'] === $userId) {
             $class = 'sender ';
-        } ?>
+        }
+        ?>
 
         <div class='message-wrapper <?php echo $class; ?>'>
             <?php 

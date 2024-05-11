@@ -17,50 +17,74 @@ require_once "includes/Controllers/UserController.php";
 function handleMessage(array $data) {
     $message = $data['message'];
     $dbManager = new DatabaseManager();
-    DatabaseManager::create([
-        'sender_id' => 1,
-        'receiver_id' => 2,
-        'message' => $message,
-    ]);
-    
+
+    if (array_key_exists('user_to', $data)) {
+        DatabaseManager::create([
+            'sender_id' => $data['user_to'], // TODO: This is a temporary solution, should be replaced with dynamic solution later
+            'receiver_id' => $_SESSION['user']['id'],
+            'message' => $message,
+        ], 'chat');
+    }
+
     echo json_encode(DatabaseManager::read());
 }
 
 function init() {
     $userController = new UserController();
-    $user = $userController->login($_POST);
+    $userData = [];
+
+    if (!empty($_SESSION['user'])) {
+        $userData = $_SESSION['user'];
+    }
+
+    $user = new User($userData);
+
+    if (isPostData('action', 'login')) {
+        $user = $userController->login($_POST);
+        echo json_encode(['success' => true]);
+        die();
+    }
+    
     $messages = [];
 
     if (!empty($_GET)) {
         $parsedUrl = parse_url($_SERVER['REQUEST_URI']);
         $pathData = array_filter(explode('/', $parsedUrl['path']));
-        $requestType = $pathData[1];
-        $requester = $pathData[2];
+        
+        if (!empty($pathData)) {
+            $requestType = $pathData[1];
+            $requester = $pathData[2];
 
-        if ($requestType === 'messages') {
-            $messages = DatabaseManager::read('*', 
-                sprintf('sender_id = "%1$s" or receiver_id = "%1$s"', $requester), 
-                'chat'
-            );
+            if ($requestType === 'messages') {
+                $messages = DatabaseManager::read('*', 
+                    sprintf('sender_id = "%1$s" or receiver_id = "%1$s"', $requester), 
+                    'chat'
+                );
 
-            echo getTemplatePart('messages',  $messages);
-            die();
+                echo getTemplatePart('messages',  $messages);
+                die();
+            }
         }
     }
 
-    echo getTemplatePart('header');
-
     if (!empty($_POST)) {
-        if (array_key_exists('message', $_POST)) {
+        if (isPostData('action', 'new-message')) {
             handleMessage($_POST);
         }
         die();
     } else {
         $dbManager = new DatabaseManager();
-        $messages = DatabaseManager::read('*', '', 'chat');
+        $messages = DatabaseManager::read('*', 
+            sprintf('sender_id = "%1$s" or receiver_id = "%1$s"', $user->id), 
+            'chat'
+        );
     }
+    
+    echo getTemplatePart('header');
+    $jsonUser = json_encode($user);
+    echo "<script>const user = $jsonUser;</script>";
 
-    if ($user->isLoggedIn()) {
+    if (!empty($user) && $user->isLoggedIn()) {
         echo getTemplatePart('messages',  $messages);
         echo getTemplatePart('chat');
     } else {

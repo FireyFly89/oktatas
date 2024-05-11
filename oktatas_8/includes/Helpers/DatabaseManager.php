@@ -25,6 +25,8 @@ class DatabaseManager
     {
         /*$user = new User($data);
         $data = $user->toArray();*/
+        unset($data['phone']);
+        unset($data['phoneCountry']);
         $data = UnderscoreColumns::convertKeysToUnderscore($data);
         $sql = sprintf(
             'INSERT INTO %s (%s) VALUES (:%s)',
@@ -32,6 +34,7 @@ class DatabaseManager
             UnderscoreColumns::getColumnNames($data),
             UnderscoreColumns::getColumnNames($data, ',:')
         );
+        
         $statement = self::$connection->prepare($sql);
 
         // TODO: később kivenni, csak debughoz

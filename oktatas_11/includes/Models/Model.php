@@ -12,7 +12,7 @@ class Model extends DatabaseManager
         $preparedData = [];
 
         foreach ($data as $key => $value) {
-            if (isset($this->{$key})) {
+            //if (isset($this->{$key})) {
                 if ($key === 'password') {
                     $encryptedPassword = password_hash($value, PASSWORD_BCRYPT);
                     $this->{$key} = $encryptedPassword;
@@ -27,7 +27,7 @@ class Model extends DatabaseManager
 
                 $this->{$key} = $value;
                 $preparedData[$key] = $value;
-            }
+            //}
         }
 
         DatabaseManager::prepareData($preparedData);

@@ -18,7 +18,7 @@ class ValidationError extends Validation {
                     continue;
                 }
 
-                if ($this->validate($definition['name'], $rule['type'], $rule)) {
+                if ($this->validate($definition['name'], $rule['type'], $rule) && array_key_exists('message', $rule)) {
                     $this->add($definition['name'], $rule['message']);
                 }
             }

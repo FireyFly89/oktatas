@@ -123,10 +123,6 @@ class UserController
     }
 
     public function login(array $data) {
-        if (empty($data) || $data['action'] !== 'login') {
-            return new User();
-        }
-
         $formMap = json_decode(getAsset('userLogin', 'json', 'definitions'), true);
         $validationError = new ValidationError($formMap, $data);
         $sessionManager = new ErrorSessionManager();
@@ -143,9 +139,9 @@ class UserController
             sprintf('email = "%s" ', $data['email']),
             'users'
         );
-
+        
         $result = array_shift($result);
-
+        
         if (!empty($result) && password_verify($data['password'], $result['password'])) {
             unset($result['password']);
             $_SESSION['user'] = $result;

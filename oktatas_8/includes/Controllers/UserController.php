@@ -15,7 +15,7 @@ class UserController
             $validationError = new ValidationError($formMap, $data);
             $sessionManager = new ErrorSessionManager();
             $sessionManager->addErrors($validationError->validationErrors);
-
+            
             if ($sessionManager->isValidated()) {
                 $sanitizer = new Sanitize($data);
                 $data = $sanitizer->sanitize($data);

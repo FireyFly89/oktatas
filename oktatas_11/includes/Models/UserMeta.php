@@ -13,7 +13,7 @@ class UserMeta extends Model
         parent::$tableName = 'user_meta';
     }
 
-    public static function create(array $data = []) {
+    public static function create(array $data = [], string $tableName = "") {
         if (!empty($data)) {
             return parent::create($data);
         }

@@ -75,3 +75,15 @@ function redirect(string $url = "/")
     header("Location: $url");
     die();
 }
+
+function isPostData($key, $value) {
+    if (!array_key_exists($key, $_POST)) {
+        return false;
+    }
+
+    if ($_POST[$key] !== $value) {
+        return false;
+    }
+
+    return true;
+}

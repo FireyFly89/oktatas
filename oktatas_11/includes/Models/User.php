@@ -1,11 +1,12 @@
 <?php
 class User extends Model
 {
-    public string $username = '';
-    public string $email = '';
-    public string $phoneCountry = '';
-    public string $phone = '';
-    public string $password = '';
+    public int $id;
+    public string $username;
+    public string $email;
+    public string $password;
+    public string $phoneCountry;
+    public string $phone;
     protected array $hidden = ['password'];
 
     public function __construct(array $data = [])
@@ -14,7 +15,7 @@ class User extends Model
         parent::$tableName = 'users';
     }
 
-    public static function create(array $data = []) {
+    public static function create(array $data = [], string $tableName = "") {
         if (!empty($data)) {
             return parent::create($data);
         }
